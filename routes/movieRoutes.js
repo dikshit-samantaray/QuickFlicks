@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { getMovies,getMovie,createMovie,updateMovie,deleteMovie } from '../controllers/movieController.js';
+import auth from '../middleware/authMiddleware.js';
+import role from '../middleware/roleMiddleware.js';
+const router = Router();
+router.get('/', getMovies);
+router.get('/:id', getMovie);
+router.post('/', auth, role, createMovie);
+router.put('/:id', auth, role, updateMovie);
+router.delete('/:id', auth, role, deleteMovie);
+export default router;
